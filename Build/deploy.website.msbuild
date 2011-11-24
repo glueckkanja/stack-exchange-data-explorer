@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+  Expected parameters:
+    Configuration - Debug, Release 
+    OutputDirectory - c:\dev.stackoverflow.com
+-->
+<Project DefaultTargets="DeployWeb" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <!-- SourceDirectory e.g. c:\builds\dev\source - MAKE SURE ccnet.config's project > workingDirectory is properly set! -->
+    <SourceDirectory>$(CCNetWorkingDirectory)</SourceDirectory>
+    <MigrationsDirectory>$(SourceDirectory)\Migrations</MigrationsDirectory>
+    <BuildDirectory>$(CCNetWorkingDirectory)\Build\targets</BuildDirectory>
+    <WebSourceDirectory>$(SourceDirectory)\App\StackExchange.DataExplorer</WebSourceDirectory>
+    <WebAssemblyInfoFile>$(WebSourceDirectory)\Properties\AssemblyInfo.cs</WebAssemblyInfoFile>
+    <TestBin>$(SourceDirectory)\App\StackExchange.DataExplorer.Tests\bin\$(Configuration)</TestBin>
+    <MigrateBin>$(SourceDirectory)\Build\Migrator.exe --connection="Server=$(TargetDatabaseServer);Database=$(TargetDatabase);User ID=$(DatabaseUser);Password=$(DatabasePassword);Trusted_Connection=False"</MigrateBin>
+
+    <BackupDirectory>$(SourceDirectory)\..\backup</BackupDirectory>
+    <StagingDirectory>$(SourceDirectory)\..\staging</StagingDirectory>
+
+    <ErrorsBackupDirectory>$(BackupDirectory)\errors</ErrorsBackupDirectory>
+    <LogsBackupDirectory>$(BackupDirectory)\logs</LogsBackupDirectory>
+    <DeployFiles-Exclude>*.cs *.csproj *.dbml* *.eps *.user</DeployFiles-Exclude>
+    <DeployFolders-Exclude>.svn obj</DeployFolders-Exclude>
+
+    <WebReleaseConfig>
+      <![CDATA[<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <connectionStrings>
+    <add name="AppConnection" connectionString="Server=$(TargetDatabaseServer)%3bDatabase=$(TargetDatabase)%3bUser ID=$(DatabaseUser)%3bPassword=$(DatabasePassword)%3bTrusted_Connection=False%3b" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+    <add name="ReaderConnection" connectionString="Server=$(TargetReaderDatabaseServer)%3bDatabase=!!DB!!%3bUser ID=$(DatabaseReadonlyUser)%3bPassword=$(DatabaseReadonlyPassword)%3bTrusted_Connection=False%3b" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+  </connectionStrings>
+
+  <system.web>
+    <compilation xdt:Transform="RemoveAttributes(debug)"/>
+  </system.web>
+
+
+</configuration>]]></WebReleaseConfig>
+  </PropertyGroup>
+
+  <UsingTask TaskName="TransformXml"
+           AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.Tasks.dll"/>
+
+  
+  <!-- For debugging purposes.. -->
+  <Target Name="WriteParameters">
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="OutputDirectory = $(OutputDirectory)"/>
+    <Message Text="SourceDirectory = $(SourceDirectory)"/>
+    <Message Text="CCNetLabel = $(CCNetLabel)"/>
+    <Message Text="TargetDatabase = $(TargetDatabase)"/>
+    <Message Text="BaseWebSiteAddress = $(BaseWebSiteAddress)"/> <!-- this will be without http:// e.g. data.stackexchange.com -->
+  </Target>
+
+  <Target Name="MigrateDatabase" DependsOnTargets="WriteParameters">
+    <Exec Command="$(MigrateBin)" WorkingDirectory="$(MigrationsDirectory)" />
+    <Message Text="MigrateDatabase complete"/>
+  </Target>
+
+
+  <Target Name="CompileWeb" DependsOnTargets="MigrateDatabase">
+
+    <WriteLinesToFile File="$(WebSourceDirectory)\..\StackExchange.DataExplorer\Web.Release.config"
+      Overwrite="true" Lines="$(WebReleaseConfig)"                  
+    />
+
+    <TransformXml Source="$(WebSourceDirectory)\..\StackExchange.DataExplorer\Web.config"
+                 Transform="$(WebSourceDirectory)\..\StackExchange.DataExplorer\Web.Release.config"
+                 Destination="$(WebSourceDirectory)\..\StackExchange.DataExplorer\WebRelease.config"/>
+
+    <MSBuild Projects="$(WebSourceDirectory)\..\StackExchange.AssetPackager\StackExchange.AssetPackager.csproj"
+             Properties="Configuration=$(Configuration);ReferencePath=$(WebSourceDirectory)\bin"
+             Targets="Build"/>
+
+    <MSBuild Projects="$(WebSourceDirectory)\..\StackExchange.AssetPackagerApp\AssetPackagerApp.csproj"
+             Properties="Configuration=$(Configuration);ReferencePath=$(WebSourceDirectory)\bin"
+             Targets="Build"/>
+    
+    <MSBuild Projects="$(WebSourceDirectory)\..\StackExchange.DataExplorer\StackExchange.DataExplorer.csproj"
+             Properties="Configuration=$(Configuration);ReferencePath=$(WebSourceDirectory)\bin"
+             Targets="Build"/>
+
+    <Message Text="CompileWeb complete" />
+  </Target>
+
+  <Target Name="DeployWeb" DependsOnTargets="CompileWeb">
+
+    <Exec Command="c:\Windows\System32\inetsrv\appcmd.exe stop site $(BaseWebSiteAddress)" />
+    <Exec IgnoreExitCode="true" Command="c:\windows\System32\robocopy /s $(WebSourceDirectory) $(OutputDirectory) /XF *.cs *.csproj *.dbml* *.eps *.user"/>
+
+    <Copy SourceFiles="$(WebSourceDirectory)\..\StackExchange.DataExplorer\WebRelease.config" DestinationFiles="$(OutputDirectory)\Web.config"  />
+
+    <Exec Command="c:\Windows\System32\inetsrv\appcmd.exe start site $(BaseWebSiteAddress)" />
+
+    <Message Text="DeployWeb complete"/>
+  </Target>
+
+
+  <Target Name="TakeWebSiteOffline">
+    <Exec Command="c:\Windows\System32\inetsrv\appcmd.exe stop site $(BaseWebSiteAddress)" />
+    <Message Text="TakeWebSiteOffline complete"/>
+  </Target>
+
+
+  <!-- Ensures our output directory is purged of previous content.. -->
+  <Target Name="CleanWeb" DependsOnTargets="TakeWebSiteOffline">
+    <!-- Just going to delete files - leave dirs alone - yeah, this is nasty, but i don't feel like revisiting msbuild itemgroup syntax.. -->
+    <Exec Command="del $(OutputDirectory)\*.* /F /Q" />
+    <Exec Command="del $(OutputDirectory)\Content\*.* /F /Q /S" Condition="Exists('$(OutputDirectory)\Content')" />
+    <Exec Command="del $(OutputDirectory)\Views\*.* /F /Q /S" Condition="Exists('$(OutputDirectory)\Views')" />
+    
+    <Message Text="CleanWeb complete"/>
+  </Target>
+  
+
+  
+
+
+</Project>

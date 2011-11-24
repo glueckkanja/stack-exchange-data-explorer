@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3A21146-D76B-487D-96A8-9D15222662FE}</ProjectGuid>
+    <ProjectTypeGuids>{e53f8fea-eae0-44a6-8774-ffd645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StackExchange.DataExplorer</RootNamespace>
+    <AssemblyName>StackExchange.DataExplorer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AssetPackager, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\AssetPackager.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth, Version=3.4.4.10176, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET.modified">
+      <HintPath>..\..\Lib\EcmaScript.NET.modified.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\..\Lib\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcMiniProfiler, Version=1.9.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\MvcMiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\Lib\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleErrorHandler">
+      <HintPath>..\..\Lib\SimpleErrorHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Data.Services.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Lib\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.2\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\..\Lib\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="App_Start\MiniProfiler.cs" />
+    <Compile Include="AssetPackager.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\LegalController.cs" />
+    <Compile Include="Controllers\SavedQueryController.cs" />
+    <Compile Include="Controllers\StackOverflowController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QueryController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
+    <Compile Include="Current.cs" />
+    <Compile Include="Dapper\Contrib\SqlMapperExtensions.cs" />
+    <Compile Include="Dapper\SqlMapper.cs" />
+    <Compile Include="DefaultAttribute.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\BusinessRuleViolation.cs" />
+    <Compile Include="Helpers\Crc16.cs" />
+    <Compile Include="Helpers\CsvResult.cs" />
+    <Compile Include="Helpers\DapperHelper.cs" />
+    <Compile Include="Helpers\DataKeys.cs" />
+    <Compile Include="Helpers\HtmlUtilities.cs" />
+    <Compile Include="Helpers\JsonpResult.cs" />
+    <Compile Include="Helpers\PagedList.cs" />
+    <Compile Include="Helpers\PageNumber.cs" />
+    <Compile Include="Helpers\PageSizer.cs" />
+    <Compile Include="Helpers\ParsedQuery.cs" />
+    <Compile Include="Helpers\QueryPlan.cs" />
+    <Compile Include="Helpers\QueryPlanResult.cs" />
+    <Compile Include="Helpers\QuerySearchCriteria.cs" />
+    <Compile Include="Helpers\QueryUtil.cs" />
+    <Compile Include="Helpers\QueryViewTracker.cs" />
+    <Compile Include="Helpers\QueryResults.cs" />
+    <Compile Include="Helpers\RedirectPermanentResult.cs" />
+    <Compile Include="Helpers\RouteAttribute.cs" />
+    <Compile Include="Helpers\RoutePriority.cs" />
+    <Compile Include="Helpers\Util.cs" />
+    <Compile Include="Helpers\XSRFSafeAttribute.cs" />
+    <Compile Include="Models\CachedResult.cs" />
+    <Compile Include="Models\DBContext.cs">
+      <DependentUpon>DBContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBContext1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\MigrationType.cs" />
+    <Compile Include="Models\Query.cs" />
+    <Compile Include="Models\QueryExecution.cs" />
+    <Compile Include="Models\Revision.cs" />
+    <Compile Include="Models\Site.cs" />
+    <Compile Include="Models\StackEntities\StackExchangeData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StackExchangeData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TableInfo.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Votes.cs" />
+    <Compile Include="Models\VoteType.cs" />
+    <Compile Include="OData.svc.cs">
+      <DependentUpon>OData.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\QueryRunner.cs" />
+    <Content Include="Content\codemirror\codemirror.css" />
+    <Content Include="Content\codemirror\custom.css" />
+    <Content Include="Content\codemirror\theme.css" />
+    <Content Include="Content\Img\openid\openid-logos.png" />
+    <Content Include="Content\qp\images\arithmetic_expression.gif" />
+    <Content Include="Content\qp\images\assert.gif" />
+    <Content Include="Content\qp\images\assign.gif" />
+    <Content Include="Content\qp\images\bitmap.gif" />
+    <Content Include="Content\qp\images\bookmark_lookup.gif" />
+    <Content Include="Content\qp\images\clustered_index_delete.gif" />
+    <Content Include="Content\qp\images\clustered_index_insert.gif" />
+    <Content Include="Content\qp\images\clustered_index_scan.gif" />
+    <Content Include="Content\qp\images\clustered_index_seek.gif" />
+    <Content Include="Content\qp\images\clustered_index_update.gif" />
+    <Content Include="Content\qp\images\collapse.gif" />
+    <Content Include="Content\qp\images\compute_scalar.gif" />
+    <Content Include="Content\qp\images\concatenation.gif" />
+    <Content Include="Content\qp\images\constant_scan.gif" />
+    <Content Include="Content\qp\images\convert.gif" />
+    <Content Include="Content\qp\images\declare.gif" />
+    <Content Include="Content\qp\images\deleted_scan.gif" />
+    <Content Include="Content\qp\images\distribute_streams.gif" />
+    <Content Include="Content\qp\images\dynamic.gif" />
+    <Content Include="Content\qp\images\fetch_query.gif" />
+    <Content Include="Content\qp\images\filter.gif" />
+    <Content Include="Content\qp\images\gather_streams.gif" />
+    <Content Include="Content\qp\images\hash_match.gif" />
+    <Content Include="Content\qp\images\if.gif" />
+    <Content Include="Content\qp\images\inserted_scan.gif" />
+    <Content Include="Content\qp\images\intrinsic.gif" />
+    <Content Include="Content\qp\images\keyset.gif" />
+    <Content Include="Content\qp\images\log_row_scan.gif" />
+    <Content Include="Content\qp\images\merge_interval.gif" />
+    <Content Include="Content\qp\images\merge_join.gif" />
+    <Content Include="Content\qp\images\nested_loops.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_delete.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_insert.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_scan.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_seek.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_spool.gif" />
+    <Content Include="Content\qp\images\nonclustered_index_update.gif" />
+    <Content Include="Content\qp\images\online_index_insert.gif" />
+    <Content Include="Content\qp\images\parameter_table_scan.gif" />
+    <Content Include="Content\qp\images\population_query.gif" />
+    <Content Include="Content\qp\images\rdi_lookup.gif" />
+    <Content Include="Content\qp\images\refresh_query.gif" />
+    <Content Include="Content\qp\images\remote_delete.gif" />
+    <Content Include="Content\qp\images\remote_insert.gif" />
+    <Content Include="Content\qp\images\remote_query.gif" />
+    <Content Include="Content\qp\images\remote_scan.gif" />
+    <Content Include="Content\qp\images\remote_update.gif" />
+    <Content Include="Content\qp\images\repartition_streams.gif" />
+    <Content Include="Content\qp\images\result.gif" />
+    <Content Include="Content\qp\images\row_count_spool.gif" />
+    <Content Include="Content\qp\images\segment.gif" />
+    <Content Include="Content\qp\images\sequence.gif" />
+    <Content Include="Content\qp\images\sequenceproject.gif" />
+    <Content Include="Content\qp\images\snapshot.gif" />
+    <Content Include="Content\qp\images\sort.gif" />
+    <Content Include="Content\qp\images\split.gif" />
+    <Content Include="Content\qp\images\spool.gif" />
+    <Content Include="Content\qp\images\stream_aggregate.gif" />
+    <Content Include="Content\qp\images\switch.gif" />
+    <Content Include="Content\qp\images\table_delete.gif" />
+    <Content Include="Content\qp\images\table_insert.gif" />
+    <Content Include="Content\qp\images\table_scan.gif" />
+    <Content Include="Content\qp\images\table_spool.gif" />
+    <Content Include="Content\qp\images\table_update.gif" />
+    <Content Include="Content\qp\images\table_valued_function.gif" />
+    <Content Include="Content\qp\images\top.gif" />
+    <Content Include="Content\qp\images\udx.gif" />
+    <Content Include="Content\qp\images\while.gif" />
+    <Content Include="Content\qp\qp.css" />
+    <Content Include="Content\qp\qp.xslt" />
+    <Content Include="Scripts\codemirror\codemirror.js" />
+    <Content Include="Scripts\codemirror\runmode.js" />
+    <Content Include="Scripts\codemirror\sql.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery.event.drag-2.0.js" />
+    <Content Include="Scripts\master.js" />
+    <Content Include="Scripts\openid-jquery.js" />
+    <Content Include="robots.txt" />
+    <Compile Include="ViewModel\QueryExecutionViewData.cs" />
+    <Compile Include="ViewModel\QueryVoting.cs" />
+    <Compile Include="ViewModel\RevisionHistory.cs" />
+    <Compile Include="ViewModel\SubHeader.cs" />
+    <Compile Include="ViewModel\SubHeaderViewData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\csv_ico.gif" />
+    <Content Include="Content\images\edgar.jpg" />
+    <Content Include="Content\images\grippie.png" />
+    <Content Include="Content\images\icon-odatafeed-14x14.png" />
+    <Content Include="Content\images\icon-odatafeed-24x24.png" />
+    <Content Include="Content\images\icon-odatafeed-28x28.png" />
+    <Content Include="Content\images\icon-odatafeed-32x32.png" />
+    <Content Include="Content\images\see_logo.png" />
+    <Content Include="Content\packaged\editor.js" />
+    <Content Include="Content\packaged\sitecss.css" />
+    <Content Include="Content\packaged\viewer.js" />
+    <Content Include="Content\packaged\viewer_editor.css" />
+    <Content Include="Content\slickgrid\slick.grid.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="OData.svc" />
+    <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
+    <Content Include="Scripts\jquery.rule.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\qp.js" />
+    <Content Include="Scripts\query.js" />
+    <Content Include="Scripts\slick.grid.js" />
+    <Content Include="Content\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\smoothness\jquery-ui-1.8.1.custom.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.textarearesizer.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\site.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Site\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\qp\showplanxml.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\DBContext.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBContext1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Models\DBContext.dbml.views">
+      <DependentUpon>DBContext.dbml</DependentUpon>
+    </None>
+    <Content Include="Views\Web.config" />
+    <EntityDeploy Include="Models\StackEntities\StackExchangeData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StackExchangeData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Master.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Faq.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\WhiteList.cshtml" />
+    <Content Include="Views\Legal\ContentPolicy.cshtml" />
+    <Content Include="Views\Legal\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Legal\TermsOfService.cshtml" />
+    <Content Include="Views\Legal\TrademarkGuidance.cshtml" />
+    <Content Include="Views\Query\New.cshtml" />
+    <Content Include="Views\SavedQuery\Index.cshtml" />
+    <Content Include="Views\SavedQuery\Show.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Show.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\PageNotFound.cshtml" />
+    <Content Include="Views\Shared\LogInUserControl.cshtml" />
+    <Content Include="Views\Shared\AboutSite.cshtml" />
+    <Content Include="Views\Shared\GuessedUserId.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\PageNumbers.cshtml" />
+    <Content Include="Views\Shared\PageSizer.cshtml" />
+    <Content Include="Views\Shared\QueryVoting.cshtml" />
+    <Content Include="Views\Shared\SubHeader.cshtml" />
+    <Content Include="Views\Shared\TaglineWithOData.cshtml" />
+    <Content Include="Views\Shared\User.cshtml" />
+    <Content Include="Views\Shared\Captcha.cshtml" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Admin\FindDuplicateUsers.cshtml" />
+    <Content Include="Views\Admin\FindDuplicateWhitelistOpenIds.cshtml" />
+    <Content Include="Views\Admin\MergeUsers.cshtml" />
+    <Content Include="Views\Shared\Query.cshtml" />
+    <Content Include="Views\Query\Editor.cshtml" />
+    <Content Include="Views\SavedQuery\Viewer.cshtml" />
+    <Content Include="Views\Admin\FindDuplicateUserOpenIds.cshtml" />
+    <Content Include="Views\Shared\QueryResults.cshtml" />
+    <Content Include="Views\Shared\RevisionHistory.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\DBContext.dbml.layout">
+      <DependentUpon>DBContext.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Models\DBContext.dbml.views_def.layout">
+      <DependentUpon>DBContext.dbml</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2519</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/DataExplorer</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://localhost/</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
+del /q $(ProjectDir)\Content\packaged\*.*
+$(ProjectDir)..\..\Lib\AssetPackagerApp.exe  $(TargetPath) $(ProjectDir)
+:exit</PostBuildEvent>
+  </PropertyGroup>
+</Project>

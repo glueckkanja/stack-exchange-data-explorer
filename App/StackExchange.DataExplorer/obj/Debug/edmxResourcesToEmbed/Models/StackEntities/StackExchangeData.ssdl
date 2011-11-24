@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MetaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MetaModelStoreContainer">
+    <EntitySet Name="Badges" EntityType="MetaModel.Store.Badges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Comments" EntityType="MetaModel.Store.Comments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Posts" EntityType="MetaModel.Store.Posts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tags" EntityType="MetaModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="MetaModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Votes" EntityType="MetaModel.Store.Votes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VoteTypes" EntityType="MetaModel.Store.VoteTypes" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Badges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="Score" Type="int" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PostTypeId" Type="int" />
+    <Property Name="AcceptedAnswerId" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="Score" Type="int" />
+    <Property Name="ViewCount" Type="int" />
+    <Property Name="Body" Type="nvarchar(max)" />
+    <Property Name="OwnerUserId" Type="int" />
+    <Property Name="LastEditorUserId" Type="int" />
+    <Property Name="LastEditDate" Type="datetime" />
+    <Property Name="LastActivityDate" Type="datetime" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="150" />
+    <Property Name="AnswerCount" Type="int" />
+    <Property Name="CommentCount" Type="int" />
+    <Property Name="FavoriteCount" Type="int" />
+    <Property Name="ClosedDate" Type="datetime" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="CommunityOwnedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Reputation" Type="int" />
+    <Property Name="EmailHash" Type="varchar" MaxLength="40" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="40" />
+    <Property Name="LastAccessDate" Type="datetime" />
+    <Property Name="WebsiteUrl" Type="nvarchar" MaxLength="200" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="Age" Type="int" />
+    <Property Name="AboutMe" Type="nvarchar(max)" />
+    <Property Name="Views" Type="int" />
+    <Property Name="UpVotes" Type="int" />
+    <Property Name="DownVotes" Type="int" />
+  </EntityType>
+  <EntityType Name="Votes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="VoteTypeId" Type="int" />
+    <Property Name="CreationDate" Type="datetime" />
+    <Property Name="BountyAmount" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="VoteTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'Meta.dbo.PostTags' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="PostTags">
+        <Property Name="PostId" Type="int" />
+        <Property Name="TagId" Type="int" />
+      </EntityType>-->
+</Schema>

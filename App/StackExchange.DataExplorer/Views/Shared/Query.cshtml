@@ -1,0 +1,104 @@
+﻿@using StackExchange.DataExplorer
+@using StackExchange.DataExplorer.Helpers
+@using StackExchange.DataExplorer.Models
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+
+    var results = ViewData["cached_results"] as QueryResults;
+    string cache;
+    
+    if (results == null) {
+        cache = "";   
+    } else {
+        cache = results.ToJson().Replace("/", "\\/");
+    }
+}
+
+@section AdditionalStyles
+{
+    @Html.Raw(AssetPackager.LinkCss("query"))
+}
+
+<style type="text/css">
+    @Html.Raw(Current.Controller.Site.TagCss)
+</style>
+<div id="query">
+    <form id="runQueryForm" action="/query/@ViewData["query_action"]" method='post'>
+        <div id="metadata">
+            <div class="info">
+                @RenderSection("Metadata")
+            </div>
+            @Html.Partial("AboutSite")
+            <div class="clear"></div>
+        </div>
+        @RenderBody()
+        <div id="query-params">
+            <h3>Enter Parameters</h3>
+        </div>
+        <div id="query-options">
+            <button id="submit-query" type="submit">Run Query</button>
+            <span class="options">
+                Options:
+                <label title="Return results in text format"><input type="checkbox" name="textResults" value="true" />Text-only results</label>
+                <label title="Include the execution plan for this query in the results"><input type="checkbox" name="withExecutionPlan" value="true" />Include execution plan</label>
+            @if (AppSettings.AllowRunOnAllDbsOption)
+            {
+                <label title="Execute this query on all sites at once"><input type="checkbox" name="crossSite" value="true" />Mutli-site</label>
+                <label title="Exclude meta sites from the sites this query is executed against"><input type="checkbox" name="excludeMetas" value="true" />Exclude metas</label>
+            }
+            </span>
+        </div>
+    @if (Current.User.IsAnonymous)
+    {
+        @Html.Partial("Captcha", Current.NewRecaptchControl())
+    }
+        <ul id="site-selector" class="result-option">
+        @foreach (Site site in Site.GetSites())
+        {
+            if (site.Id == Current.Controller.Site.Id)
+            {
+                continue;
+            }
+            <li>
+                <a class="site templated" href="/@site.Name.ToLower()/query/:id:slug:params" title="View results on @site.LongName">
+                    <img src="@site.IconUrl" alt="@site.LongName" width="16" height="16" />
+                </a>
+            </li>
+        }
+        </ul>
+        <div class="clear"></div>
+    </form>
+    <div id="loading">
+        <img src="http://sstatic.net/img/progress-dots.gif" alt="loading" />Hold tight while we fetch your results
+    </div>
+    <div id="error-message"></div>
+    <div id="query-results" class="result-option">
+        <div class="subheader">
+            <div class="group">
+                <div class="miniTabs">
+                    <a id="resultSetsTab" class="optional" href="#resultSets">Results</a>
+                    <a id="messagesTab" href="#messages">Messages</a>
+                    <a id="graphTab" class="optional" href="#graph">Graph</a>
+                    <a id="executionPlanTab" class="optional" href="#executionPlan">Execution Plan</a>
+                </div>
+                <a id="resultSetsButton" class="download-button templated" title="Download results as CSV" href="/:site/:metas:multi;csv/:id:params">Download CSV</a>
+                <a id="executionPlanButton" class="download-button templated" title="Download execution plan as XML" href="/:site/:metas:multi;plan/:id:params">Download XML</a>
+            </div>
+        </div>
+        <div id="resultSets" class="panel"></div>
+        <pre id="messages" class="panel"><code></code></pre>
+        <div id="executionPlan" class="panel"></div>
+        <div id="graph" class="panel"></div>
+        <div id="execution-stats">:records rows returned in :time ms:cached</div>
+    </div>
+</div>
+@Html.Raw(AssetPackager.ScriptSrc("jquery.validate"))
+@Html.Raw(AssetPackager.ScriptSrc("query"))
+@Html.Raw(AssetPackager.ScriptSrc("flot"))
+<script type="text/javascript">
+    DataExplorer.ready(function () {
+        if (loadCachedResults) {
+            loadCachedResults(@(Html.Raw(cache)));
+        }
+    });
+</script>

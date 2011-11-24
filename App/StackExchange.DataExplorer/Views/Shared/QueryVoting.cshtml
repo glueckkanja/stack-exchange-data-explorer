@@ -1,0 +1,16 @@
+﻿@model StackExchange.DataExplorer.ViewModel.QueryVoting
+
+<div id="query-voting">
+    <span title="This is a favorite query (click again to undo)" class="star-@(Model.HasVoted?"on":"off")"></span>
+    <div class="favoritecount"><strong class="@(Model.HasVoted?"favoritecount-selected":"")">@Model.TotalVotes</strong></div>
+    <div class="error-notification supernovabg">
+        <h2>
+            Please <a href="/account/login?returnurl=@Request.RawUrl">login or register</a> to vote for this query.</h2>
+        (click on this box to dismiss)
+    </div>
+    <script type="text/javascript">
+        DataExplorer.ready(function () {
+            DataExplorer.Voting.init('#query-voting', @(Model.RevisionId), @(Model.HasVoted.ToString().ToLower()), @(Model.ReadOnly.ToString().ToLower()));
+        });
+    </script>
+</div>

@@ -1,0 +1,16 @@
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\StackExchange.DataExplorer.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\StackExchange.DataExplorer.pdb
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\AssetPackager.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\DotNetOpenAuth.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\EcmaScript.NET.modified.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\log4net.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\MarkdownSharp.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\MvcMiniProfiler.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\Newtonsoft.Json.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\Recaptcha.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\SimpleErrorHandler.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\WebActivator.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\bin\Yahoo.Yui.Compressor.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\obj\Debug\StackExchange.DataExplorer.dll
+C:\Users\JanBerdel\DesktopMercurial\stack-exchange-data-explorer\App\StackExchange.DataExplorer\obj\Debug\StackExchange.DataExplorer.pdb
