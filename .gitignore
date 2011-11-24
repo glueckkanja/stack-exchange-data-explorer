@@ -1,9 +1,7 @@
 bin/
 obj/
-*.user
-*.suo
 Web.Release.config
-Content/packaged/
+/App/StackExchange.DataExplorer/Content/packaged
 App/StackExchange.DataExplorer.DB/sql/
 App/_ReSharper.DataExplorer/
 App/_ReSharper.DataExplorerFull/
@@ -11,3 +9,11 @@ App/_ReSharper.DataExplorerFull/
 App/StackExchange.DataExplorer.Azure/ServiceConfiguration.cscfg
 App/TestResults/
 *.orig
+*.user
+*.suo
+_ReSharper.*
+*.ReSharper
+*~
+*.tmp
+*.Publish.xml
+*.cache
