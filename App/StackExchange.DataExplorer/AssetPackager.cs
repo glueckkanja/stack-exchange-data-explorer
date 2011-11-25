@@ -88,13 +88,13 @@ namespace StackExchange.DataExplorer
                         }
                     },
                     {
-                        "jquery", new AssetCollection("http://ajax.microsoft.com/ajax/jquery/jquery-1.6.4.min.js")
+                        "jquery", new AssetCollection("https://ajax.microsoft.com/ajax/jquery/jquery-1.6.4.min.js")
                         {
                             "/Scripts/jquery-1.6.4.js"
                         }
                     },
                     {
-                        "jquery.validate", new AssetCollection("http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.pack.js")
+                        "jquery.validate", new AssetCollection("https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.pack.js")
                         {
                             "/Scripts/jquery.validate.js"
                         }
