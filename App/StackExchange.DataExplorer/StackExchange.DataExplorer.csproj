@@ -447,9 +447,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug goto :exit
-del /q $(ProjectDir)\Content\packaged\*.*
-$(ProjectDir)..\..\Lib\AssetPackagerApp.exe  $(TargetPath) $(ProjectDir)
-:exit</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

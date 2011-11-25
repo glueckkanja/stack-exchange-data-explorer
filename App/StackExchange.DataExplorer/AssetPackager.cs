@@ -18,11 +18,7 @@ namespace StackExchange.DataExplorer
         {
             get
             {
-#if DEBUG 
                 return false;
-#else
-                return true;
-#endif
             }
         }
 
