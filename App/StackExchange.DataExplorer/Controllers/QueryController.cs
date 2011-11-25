@@ -15,11 +15,6 @@ namespace StackExchange.DataExplorer.Controllers
         [Route(@"query/save/{siteId:\d+}/{parentId?:\d+}")]
         public ActionResult Create(string sql, string title, string description, int siteId, int? parentId, bool? textResults, bool? withExecutionPlan, bool? crossSite, bool? excludeMetas)
         {
-            if (CurrentUser.IsAnonymous && !CaptchaController.CaptchaPassed(GetRemoteIP()))
-            {
-                return Json(new { captcha = true });
-            }
-
             ActionResult response = null;
 
             try
@@ -146,11 +141,6 @@ namespace StackExchange.DataExplorer.Controllers
         [Route(@"query/run/{siteId:\d+}/{revisionId:\d+}")]
         public ActionResult Execute(int revisionId, int siteId, bool? textResults, bool? withExecutionPlan, bool? crossSite, bool? excludeMetas)
         {
-            if (CurrentUser.IsAnonymous && !CaptchaController.CaptchaPassed(GetRemoteIP()))
-            {
-                return Json(new { captcha = true });
-            }
-
             ActionResult response = null;
 
             try
